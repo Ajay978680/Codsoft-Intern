@@ -1,0 +1,58 @@
+
+import java.util.*;
+public class Numberguess{
+public static void main(String[] args)
+{
+Scanner sc=new Scanner(System.in);
+Random random=new Random();
+int score=0;
+boolean playagain=true;
+while(playagain)
+{
+int randomnumber=random.nextInt(20)+1;
+int attempt=7;
+boolean guess=false;
+System.out.println("\n Generated number between 1 to 20 : ");
+System.out.println("You have" + attempt + "attempts to guess it");
+
+for(int i=1;i<=attempt;i++)
+{
+System.out.println("Attempt"+i+" Enter your guess:");
+int userguess=sc.nextInt();
+
+if(userguess==randomnumber)
+{
+System.out.println("Congrats! You guessed it correctly");
+guess=true;
+score+=10;
+break;
+}
+
+else if(userguess>randomnumber)
+{
+System.out.println("You are guessing too much");
+}
+
+else
+{
+System.out.println("You are guessing too low");
+}
+}
+
+if(!guess){
+System.out.println("You are failed");
+}
+
+System.out.println("Current Score:"+score);
+System.out.println("Do you want to play again?");
+String response=sc.next().toLowerCase();
+playagain=response.equals("yes");
+}
+
+System.out.println("Game Over , final Score :"+score);
+sc.close();
+}
+}
+
+
+
