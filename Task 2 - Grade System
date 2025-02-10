@@ -1,0 +1,46 @@
+import java.util.*;
+
+class grade
+{
+public static void main(String args[])
+{
+Scanner sc=new Scanner(System.in);
+System.out.println("Enter No of Subjects: ");
+int n=sc.nextInt();
+int total=0;
+for(int i=1;i<=n;i++)
+{
+System.out.println("Enter Marks Obtained in Subject "+i+": ");
+int marks=sc.nextInt();
+
+while(marks<0 || marks>100) 
+{
+System.out.println("Marks is not Within the range");
+marks=sc.nextInt();
+}
+
+total +=marks;
+}
+
+double avg=(double)total/(double)n *100.0;
+
+System.out.println("\n Results.... ");
+System.out.println("Your Total Marks: "+ total);
+System.out.println("Your Average is: "+ avg);
+
+if(avg>=90.0)
+System.out.println("Your Grade is : O");
+if(avg>=80.0)
+System.out.println("Your Grade is : A+");
+if(avg>=70.0)
+System.out.println("Your Grade is : A");
+if(avg>=60.0)
+System.out.println("Your Grade is : B");
+else
+System.out.println("Your Grade is : C");
+}
+}
+
+
+
+
