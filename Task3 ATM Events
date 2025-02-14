@@ -1,0 +1,120 @@
+import java.util.*;
+
+class BankAccount
+{
+private double balance;
+
+public BankAccount(double initialBalance) // constructor
+{
+this.balance=initialBalance;
+}
+
+public double getBalance()
+{
+return balance;
+}
+
+public void deposit(double amount)
+{
+if(amount>0)
+{
+balance +=amount;
+System.out.println("Deposit Successful. New balance is: "+ balance);
+}
+else
+System.out.println("Invalid Deposit");
+}
+
+public boolean withdraw(double amount)
+{
+if(amount>0 && amount<=balance)
+{
+balance -=amount;
+System.out.println("Withdraw Successful, Your Balance amount is "+balance);
+return true;
+}
+else
+{
+System.out.println("Insufficient Balance, Withdraw is not successful");
+return false;
+}
+}
+}
+
+
+class ATM
+{
+private BankAccount userAccount;
+private Scanner scanner;
+
+public ATM(BankAccount account)
+{
+this.userAccount=account;
+this.scanner=new Scanner(System.in);
+}
+
+public void displayMenu()
+{
+while(true)
+{
+System.out.println("\nATM MACHINE");
+System.out.println("1. Withdraw");
+System.out.println("2. Deposit");
+System.out.println("3. Check Balance");
+System.out.println("4. Exit");
+System.out.println("Choose an option: ");
+
+int choice=scanner.nextInt();
+switch(choice)
+{
+case 1:
+handlewithdraw();
+break;
+
+case 2:
+handledeposit();
+break;
+
+case 3:
+handlecheckbalance();
+break;
+
+case 4:
+System.out.println("You will exited");
+break;
+
+default:
+System.out.println("Invalid Option");
+}
+}
+}
+
+private void handlewithdraw()
+{
+System.out.println("Enter Withdrawlamount: ");
+double amount=scanner.nextDouble();
+userAccount.withdraw(amount);
+}
+
+private void handledeposit()
+{
+System.out.println("Enter depositamount: ");
+double amount=scanner.nextInt();
+userAccount.deposit(amount);
+}
+
+private void handlecheckbalance()
+{
+System.out.println("Balance: "+userAccount.getBalance());
+}
+}
+
+public class ATMSimulator
+{
+public static void main(String args[])
+{
+BankAccount myacc=new BankAccount(500.0);
+ATM myATM=new ATM(myacc);
+myATM.displayMenu();
+}
+}
